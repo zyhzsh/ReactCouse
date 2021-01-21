@@ -1,4 +1,3 @@
-import AboutSection from './pages/AboutUs';
 //pages
 import AboutUs from'./pages/AboutUs';
 function App() {
