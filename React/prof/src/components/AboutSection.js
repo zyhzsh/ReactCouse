@@ -3,6 +3,7 @@ import { About, Description, Image, Hide } from "../styles";
 //Framer Mothion
 import { motion } from "framer-motion";
 import {titleAnim,fade,photoAnim} from '../animation';
+import Wave from './Wave';
 const AboutSection = () => {
   return (
     <About>
@@ -31,6 +32,7 @@ const AboutSection = () => {
       <Image>
         <motion.img variants={photoAnim} src={home1} alt="home1" />
       </Image>
+      <Wave />
     </About>
   );
 };
