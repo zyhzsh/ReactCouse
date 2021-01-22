@@ -14,3 +14,20 @@ const AboutUs = () => {
   );
 };
 export default AboutUs;
+/*
+  const titleAnim={
+    hidden:{opacity:0},
+    show:{opacity: 1, transition: { duration: 2 }},
+  }
+  const container={
+    hidden:{x:100},
+    show:{x:0, 
+      transition: { 
+        duration: 1 , 
+        ease:"easeOut",
+        staggerChildren:0.5,
+      }
+    },
+  }
+
+*/
