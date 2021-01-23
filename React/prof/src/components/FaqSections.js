@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { About } from "../styles";
+import { useState } from "react";
+import Toggle from "./Toggle";
 const FaqSection = () => {
   return (
     <Faq>
@@ -11,8 +13,9 @@ const FaqSection = () => {
         <div className="answer">
           <p>Lorem ipsum dolor sit amet.</p>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Repudiandae blanditiis corrupti sit veritatis voluptate ratione.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores,
+            totam fugiat labore maxime fuga voluptatum saepe assumenda earum
+            magnam et?
           </p>
         </div>
         <div className="faq-line"></div>
@@ -53,29 +56,29 @@ const FaqSection = () => {
     </Faq>
   );
 };
-const Faq=styled(About)`
-  display:block;
-  span{
-    display:block;
+const Faq = styled(About)`
+  display: block;
+  span {
+    display: block;
   }
-  h2{
-    padding-bottom:2rem;
-    font-weight:lighter;
+  h2 {
+    padding-bottom: 2rem;
+    font-weight: lighter;
   }
-  .faq-line{
-    background:#ccc;
-    height:0.2rem;
-    margin:2rem 0rem;
-    width:100%;
+  .faq-line {
+    background: #ccc;
+    height: 0.2rem;
+    margin: 2rem 0rem;
+    width: 100%;
   }
-  .question{
-    padding:3rem 0rem;
+  .question {
+    padding: 3rem 0rem;
     cursor: pointer;
   }
-  .answer{
-    padding:2rem 0rem;
-    p{
-      padding:1rem 0rem;
+  .answer {
+    padding: 2rem 0rem;
+    p {
+      padding: 1rem 0rem;
     }
   }
 `;
