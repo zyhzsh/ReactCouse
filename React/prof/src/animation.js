@@ -8,6 +8,7 @@ export const pageAnimation = {
     y: 0,
     transition: {
       duration: 0.5,
+      when: "beforeChildren",
       staggerChildren: 0.25,
     },
   },
@@ -68,13 +69,7 @@ export const sliderContainer = {
 };
 
 export const scrollReveal = {
-  hidden: {
-    opacity: 0,
-    scale: 1.2,
-    transition: {
-      duration: 0.5,
-    },
-  },
+  hidden: { opacity: 0, scale: 1.2, transition: { duration: 0.5 } },
   show: {
     opacity: 1,
     scale: 1,
@@ -83,3 +78,11 @@ export const scrollReveal = {
     },
   },
 };
+
+// export const swoopAdoop = {
+//   hidden: { width: "-20%", transition: { duration: 1 } },
+//   show: {
+//     width: "100%",
+//     transition: { ease: "easeOut", duration: 1 },
+//   },
+// };

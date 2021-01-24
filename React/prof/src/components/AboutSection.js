@@ -1,9 +1,11 @@
+import React from "react";
 import home1 from "../img/home1.png";
 import { About, Description, Image, Hide } from "../styles";
-//Framer Mothion
+//Framer Motion
 import { motion } from "framer-motion";
-import {titleAnim,fade,photoAnim} from '../animation';
-import Wave from './Wave';
+import { titleAnim, fade, photoAnim } from "../animation";
+import Wave from "./Wave";
+
 const AboutSection = () => {
   return (
     <About>
@@ -22,19 +24,19 @@ const AboutSection = () => {
           </Hide>
         </motion.div>
         <motion.p variants={fade}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.{" "}
+          Contact us for any photography or videography ideas that you have. We
+          have professionals with amazing skills.
         </motion.p>
         <motion.button variants={fade}>Contact Us</motion.button>
       </Description>
       <Image>
-        <motion.img variants={photoAnim} src={home1} alt="home1" />
+        <motion.img variants={photoAnim} src={home1} alt="guy with a camera" />
       </Image>
       <Wave />
     </About>
   );
 };
+
+//Styled Components
 
 export default AboutSection;

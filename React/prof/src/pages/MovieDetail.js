@@ -1,25 +1,36 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { MovieState } from "../movieState";
+//Animations
 import { motion } from "framer-motion";
 import { pageAnimation } from "../animation";
+
 const MovieDetail = () => {
   const history = useHistory();
   const url = history.location.pathname;
   const [movies, setMovies] = useState(MovieState);
   const [movie, setMovie] = useState(null);
+
+  //UseEffect
   useEffect(() => {
     const currentMovie = movies.filter((stateMovie) => stateMovie.url === url);
     setMovie(currentMovie[0]);
+    console.log(setMovies);
   }, [movies, url]);
+
   return (
     <>
       {movie && (
-        <Details exit="exit" variants={pageAnimation} initial="hidden" animate="show">
+        <Details
+          exit="exit"
+          variants={pageAnimation}
+          initial="hidden"
+          animate="show"
+        >
           <HeadLine>
             <h2>{movie.title}</h2>
-            <img src={movie.mainImg} alt="movieimg" />
+            <img src={movie.mainImg} alt="movie" />
           </HeadLine>
           <Awards>
             {movie.awards.map((award) => (
@@ -30,9 +41,9 @@ const MovieDetail = () => {
               />
             ))}
           </Awards>
-          <ImgDisplay>
-            <img src={movie.secondaryImg} alt="img2" />
-          </ImgDisplay>
+          <ImageDisplay>
+            <img src={movie.secondaryImg} alt="movie" />
+          </ImageDisplay>
         </Details>
       )}
     </>
@@ -50,7 +61,7 @@ const HeadLine = styled.div`
     position: absolute;
     top: 10%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -10%);
   }
   img {
     width: 100%;
@@ -64,6 +75,10 @@ const Awards = styled.div`
   margin: 5rem 10rem;
   align-items: center;
   justify-content: space-around;
+  @media (max-width: 1500px) {
+    display: block;
+    margin: 2rem 2rem;
+  }
 `;
 const AwardStyle = styled.div`
   padding: 5rem;
@@ -80,6 +95,14 @@ const AwardStyle = styled.div`
     padding: 2rem 0rem;
   }
 `;
+const ImageDisplay = styled.div`
+  min-height: 50vh;
+  img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+`;
 
 //Award Component
 const Award = ({ title, description }) => {
@@ -91,15 +114,5 @@ const Award = ({ title, description }) => {
     </AwardStyle>
   );
 };
-
-const ImgDisplay=styled.div`
-    min-height:50vh;
-    img{
-        width:100%;
-        height:100vh;
-        object-fit:cover;
-    }
-`;
-
 
 export default MovieDetail;
