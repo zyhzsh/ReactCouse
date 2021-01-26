@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
-import { loadGames } from "../acntions/gamesAction";
+import { loadGames } from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
 //Styling and Animation
