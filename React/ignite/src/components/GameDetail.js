@@ -6,37 +6,41 @@ import { useSelector } from "react-redux";
 
 const GameDetail = () => {
   //Data
-  const { screen, game } = useSelector((state) => state.detail);
+  const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
-    <CardShadow>
-      <Detail>
-        <Stats>
-          <div className="rating">
-            <h3>{game.name}</h3>
-            <p>Rating:{game.rating}</p>
-          </div>
-          <Info>
-            <h3>Platforms</h3>
-            <Platforms>
-              {game.platforms.map((data) => (
-                <h3 key={data.platform.id}>{data.platform.name}</h3>
+    <>
+      {!isLoading && (
+        <CardShadow>
+          <Detail>
+            <Stats>
+              <div className="rating">
+                <h3>{game.name}</h3>
+                <p>Rating:{game.rating}</p>
+              </div>
+              <Info>
+                <h3>Platforms</h3>
+                <Platforms>
+                  {game.platforms.map((data) => (
+                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                  ))}
+                </Platforms>
+              </Info>
+            </Stats>
+            <Media>
+              <img src={game.background_image} alt={game.background_image} />
+            </Media>
+            <Description>
+              <p>{game.description_raw}</p>
+            </Description>
+            <div className="gallery">
+              {screen.map((data) => (
+                <img key={screen.id} src={data.image} alt={data.image} />
               ))}
-            </Platforms>
-          </Info>
-        </Stats>
-        <Media>
-          <img src={game.background_image} alt={game.background_image} />
-        </Media>
-        <Description>
-          <p>{game.description_raw}</p>
-        </Description>
-        <div className="gallery">
-          {screen.map((data) => (
-            <img key={screen.id} src={data.image} alt={data.image} />
-          ))}
-        </div>
-      </Detail>
-    </CardShadow>
+            </div>
+          </Detail>
+        </CardShadow>
+      )}
+    </>
   );
 };
 const CardShadow = styled(motion.div)`
@@ -47,14 +51,14 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  &::-webkit-scrollbar{
-      width:0.5rem;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
   }
-  &::-webkit-scrollbar-thumb{
-      background-color:#ff7676;
+  &::-webkit-scrollbar-thumb {
+    background-color: #ff7676;
   }
-  &::-webkit-scrollbar-track{
-      background-color:white;
+  &::-webkit-scrollbar-track {
+    background-color: white;
   }
 `;
 const Detail = styled(motion.div)`
@@ -65,34 +69,34 @@ const Detail = styled(motion.div)`
   position: absolute;
   left: 10%;
   color: black;
-  img{
-      width:100%;
+  img {
+    width: 100%;
   }
 `;
 
-const Stats=styled(motion.div)`
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+const Stats = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
-const Info=styled(motion.div)`
-    text-align:center;
+const Info = styled(motion.div)`
+  text-align: center;
 `;
-const Platforms=styled(motion.div)`
-    display:flex;
-    justify-content:space-evenly;
-    img{
-        margin-left:3rem;
-    }
+const Platforms = styled(motion.div)`
+  display: flex;
+  justify-content: space-evenly;
+  img {
+    margin-left: 3rem;
+  }
 `;
-const Media=styled(motion.div)`
-    margin-top:5rem;
-    img{
-        width:100%;
-    }
+const Media = styled(motion.div)`
+  margin-top: 5rem;
+  img {
+    width: 100%;
+  }
 `;
-const Description=styled(motion.div)`
-    margin:5rem 0rem;
+const Description = styled(motion.div)`
+  margin: 5rem 0rem;
 `;
 
 export default GameDetail;
