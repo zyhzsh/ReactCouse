@@ -7,18 +7,19 @@ import { loadDetail } from "../actions/detailAction";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 const Game = ({ name, released, id, img }) => {
+  const stringpathId = id.toString();
   //Load Detail Handler
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
-    document.body.style.overflow="hidden";
+    document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
   return (
-    <StyledGame onClick={loadDetailHandler}>
+    <StyledGame layoutId={stringpathId} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
         <h3>{name}</h3>
         <p>{released}</p>
-        <img src={smallImage(img,640)} alt={`img=${name}`} />
+        <img src={smallImage(img, 640)} alt={`img=${name}`} />
       </Link>
     </StyledGame>
   );
@@ -29,7 +30,7 @@ const StyledGame = styled(motion.div)`
   text-align: center;
   border-radius: 1rem;
   cursor: pointer;
-  overflow:hidden;
+  overflow: hidden;
   img {
     width: 100%;
     height: 40vh;
