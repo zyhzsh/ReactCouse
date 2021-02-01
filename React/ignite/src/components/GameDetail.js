@@ -13,7 +13,9 @@ import nintendo from "../img/nintendo.svg";
 import xbox from "../img/xbox.svg";
 import gamepad from "../img/gamepad.svg";
 import apple from "../img/apple.svg";
-
+//Star Images
+import startEmpty from "../img/star-empty.png";
+import startFull from "../img/star-full.png";
 //GET PLATFORM IMAGES
 const getPlatform = (platform) => {
   switch (platform) {
@@ -45,6 +47,20 @@ const GameDetail = ({ pathId }) => {
   };
   //Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
+  //Get Stars
+  const getStars = () => {
+    const start = [];
+    const rating = Math.floor(game.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        start.push(<img alt="start" key={i} src={startFull}></img>);
+      } else {
+        start.push(<img alt="start" key={i} src={startEmpty}></img>);
+      }
+    }
+    return start;
+  };
+
   return (
     <>
       {!isLoading && (
@@ -54,6 +70,7 @@ const GameDetail = ({ pathId }) => {
               <div className="rating">
                 <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
                 <p>Rating: {game.rating}</p>
+                {getStars()}
               </div>
               <Info>
                 <h3>Platforms</h3>
@@ -134,6 +151,11 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  img{
+    width:2rem;
+    height:2rem;
+    display:inline;
+  }
 `;
 const Info = styled(motion.div)`
   text-align: center;
