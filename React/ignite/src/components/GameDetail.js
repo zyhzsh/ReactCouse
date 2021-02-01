@@ -1,33 +1,35 @@
+import React from "react";
 //Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
 import { smallImage } from "../util";
 
-const GameDetail = ({pathId}) => {
+const GameDetail = ({ pathId }) => {
   const history = useHistory();
+
   //Exit Detail
-  const exitDetailHandler = (e) => {
+  const exitDetailHander = (e) => {
     const element = e.target;
     if (element.classList.contains("shadow")) {
       document.body.style.overflow = "auto";
       history.push("/");
     }
   };
+
   //Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
     <>
       {!isLoading && (
-        <CardShadow className="shadow" onClick={exitDetailHandler}>
+        <CardShadow className="shadow" onClick={exitDetailHander}>
           <Detail layoutId={pathId}>
             <Stats>
               <div className="rating">
-                <h3>{game.name}</h3>
-                <p>Rating:{game.rating}</p>
+                <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
+                <p>Rating: {game.rating}</p>
               </div>
               <Info>
                 <h3>Platforms</h3>
@@ -39,14 +41,22 @@ const GameDetail = ({pathId}) => {
               </Info>
             </Stats>
             <Media>
-              <img src={smallImage(game.background_image,1280)} alt={game.background_image} />
+              <motion.img
+                layoutId={`image ${pathId}`}
+                src={smallImage(game.background_image, 1280)}
+                alt={game.background_image}
+              />
             </Media>
             <Description>
               <p>{game.description_raw}</p>
             </Description>
             <div className="gallery">
-              {screen.map((data) => (
-                <img key={screen.id} src={smallImage(data.image,1280)} alt={data.image} />
+              {screen.results.map((screen) => (
+                <img
+                  src={smallImage(screen.image, 1280)}
+                  key={screen.id}
+                  alt={screen.image}
+                />
               ))}
             </div>
           </Detail>
@@ -55,6 +65,7 @@ const GameDetail = ({pathId}) => {
     </>
   );
 };
+
 const CardShadow = styled(motion.div)`
   width: 100%;
   min-height: 100vh;
@@ -66,13 +77,16 @@ const CardShadow = styled(motion.div)`
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
+
   &::-webkit-scrollbar-thumb {
     background-color: #ff7676;
   }
+
   &::-webkit-scrollbar-track {
-    background-color: white;
+    background: white;
   }
 `;
+
 const Detail = styled(motion.div)`
   width: 80%;
   border-radius: 1rem;
@@ -81,6 +95,7 @@ const Detail = styled(motion.div)`
   position: absolute;
   left: 10%;
   color: black;
+  z-index:10;
   img {
     width: 100%;
   }
@@ -101,12 +116,14 @@ const Platforms = styled(motion.div)`
     margin-left: 3rem;
   }
 `;
+
 const Media = styled(motion.div)`
   margin-top: 5rem;
   img {
     width: 100%;
   }
 `;
+
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
 `;
